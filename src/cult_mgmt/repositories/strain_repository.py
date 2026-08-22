@@ -1,23 +1,27 @@
 from db.connection import get_connection
 from facility_repository import get_facility
+import psycopg
 
 conn = get_connection()
 
 def create_strain(name):
-    facility = get_facility()
-    facility_id = facility[0]
 
-    with conn.cursor() as cur:
-        cur.execute(
-            """
-            INSERT INTO strains (name)
-            VALUES (%s)
-            """,
-            (
-                name,
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                INSERT INTO strains (name)
+                VALUES (%s)
+                """,
+                (
+                    name,
+                )
             )
-        )
-    conn.commit()
+        conn.commit()
+
+    except psycopg.errors.UniqueViolation:
+        conn.rollback()
+        return f"Sorry {name} already exists."
 
 def view_strains():
     with conn.cursor() as cur:
@@ -32,19 +36,37 @@ def view_strains():
     return strains
 
 def edit_strains(old_name, new_name):
-    with conn.cursor() as cur:
-        cur.execute(
-            """
-            UPDATE strains
-            SET name = %s
-            WHERE name = %s
-            """,
-            (
-                new_name,
-                old_name
-            )
-        )
-    conn.commit()
 
-def delete_strains():
-    pass
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                UPDATE strains
+                SET name = %s
+                WHERE name = %s
+                """,
+                (
+                    new_name,
+                    old_name
+                )
+            )
+        conn.commit()
+    except psycopg.errors.UniqueViolation:
+        conn.rollback()
+        return f"Sorry {new_name} already exists."
+
+def delete_strains(name):
+    warning = input(f"Are you sure you want to delete {name}? ")
+
+    if warning.lower() == "yes":
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                DELETE FROM strains
+                WHERE name = %s
+                """,
+                (
+                    name,
+                )
+            )
+        conn.commit()

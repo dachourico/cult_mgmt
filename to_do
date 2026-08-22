@@ -1,0 +1,440 @@
+## 1. Project setup
+
+* [x] Create project folder/repository
+* [x] Add your `schema.sql` to the repo
+* [x] Create a Python virtual environment
+* [x] Create a `.gitignore`
+* [x] Create a `.env` file for database credentials
+* [x] Make sure `.env` is ignored by Git
+* [x] Install your PostgreSQL Python driver
+        - access by import psycopg
+        - import os, import psycopg, from dotenv import load_dotenv
+        - load_dotenv()
+        - conn = psycopg.connect(DATABASE_URL)
+* [x] Create basic project folder structure
+* [x] Make first clean Git commit
+
+## 2. PostgreSQL connection
+
+* [x] Connect Python to your PostgreSQL database
+* [x] Verify Python can successfully connect
+* [x] Run a simple query from Python
+* [x] Create a reusable database connection function/module
+* [ ] Handle connection errors cleanly
+
+**Goal:** Python can communicate with your existing database.
+
+## 3. Facility functionality
+
+* [x] Retrieve the current facility
+* [x] Create facility if none exists
+* [x] Display facility name
+* [x] Edit facility name
+* [x] Edit default clone days
+* [x] Edit default veg days
+* [x] Edit default flower days
+* [x] Edit default dry days
+
+**Goal:** On startup, the application knows which facility you're working in.
+
+## 4. Room CRUD
+
+* [x] Create a room
+* [x] View all rooms
+* [x] View one room
+* [x] Edit room name
+* [x] Edit room type
+* [x] Delete room
+* [ ] Prevent invalid room types in Python
+
+Room types:
+
+* clone
+* veg
+* flower
+* dry
+
+**Goal:** You can fully manage the facility's rooms from Python.
+
+## 5. Strain CRUD
+
+* [x] Create a strain
+* [x] View all strains
+* [x] Edit strain
+* [x] Delete strain
+* [x] Prevent duplicate strain names gracefully
+
+**Goal:** You have a reusable strain library for creating batches.
+
+## 6. Plant batch CRUD
+
+* [ ] Create a plant batch
+* [ ] Select its strain
+* [ ] Enter plant count
+* [ ] Assign it to a room
+* [ ] Store initialized date
+* [ ] Store phase start date
+* [ ] Give new batches an active status
+* [ ] View all active batches
+* [ ] View one batch
+* [ ] Edit batch name
+* [ ] Edit plant count
+* [ ] Edit strain if necessary
+* [ ] Delete a batch
+
+**Goal:** Batches become the main working object in your application.
+
+## 7. Batch movement
+
+* [ ] Create a function for moving a batch
+* [ ] Select destination room
+* [ ] Close the batch's current history record
+* [ ] Record move-out date
+* [ ] Create a new batch history record
+* [ ] Record new move-in date
+* [ ] Update `current_room_id`
+* [ ] Update `phase_start_date`
+* [ ] Verify movement history stays accurate
+
+**Goal:** A batch can move from Clone → Veg → Flower → Dry without losing its history.
+
+## 8. Batch history
+
+* [ ] View a batch's complete room history
+* [ ] Show previous rooms
+* [ ] Show move-in dates
+* [ ] Show move-out dates
+* [ ] Calculate days spent in each room
+* [ ] Calculate days spent in current room
+
+**Goal:** You can answer where a batch has been and how long it spent there.
+
+## 9. Room information
+
+* [ ] Select a room
+* [ ] Display room name
+* [ ] Display room type
+* [ ] Display batches currently in the room
+* [ ] Display strain for each batch
+* [ ] Display plant count for each batch
+* [ ] Display total plants in room
+* [ ] Display days each batch has been in the room
+
+**Goal:** Selecting a room gives you a useful cultivation overview.
+
+## 10. Task CRUD
+
+* [ ] Create task
+* [ ] Assign task to a batch
+* [ ] Associate task with a room
+* [ ] Add due date
+* [ ] View tasks for a batch
+* [ ] View tasks for a room
+* [ ] Edit task
+* [ ] Delete task
+* [ ] Mark task completed
+* [ ] Save completion date
+* [ ] Display incomplete tasks separately from completed tasks
+
+**Goal:** Rooms and batches have actionable task lists.
+
+## 11. Cultivation calculations
+
+* [ ] Calculate current day in phase
+* [ ] Compare current day against facility phase duration
+* [ ] Calculate approximate days remaining in current phase
+* [ ] Calculate approximate days until harvest
+* [ ] Display expected next phase
+* [ ] Flag batches that are past their suggested phase duration
+
+**Goal:** The app starts doing useful cultivation logic instead of only CRUD.
+
+## 12. Suggested environment
+
+Keep this simple for the MVP.
+
+* [ ] Decide what environmental recommendations you want
+* [ ] Create basic recommendations by room type
+* [ ] Optionally vary recommendations based on day in phase
+* [ ] Display suggested temperature
+* [ ] Display suggested humidity
+* [ ] Optionally display suggested VPD
+* [ ] Keep these rules in Python rather than making a complicated database system
+
+**Goal:** A room screen can say something like "Flower Day 18 — suggested environment: X."
+
+## 13. Harvest workflow
+
+* [ ] Add ability to harvest a batch
+* [ ] Record harvest date
+* [ ] Change status to harvested
+* [ ] Remove batch from active room
+* [ ] Close final room-history record
+* [ ] Keep harvested batches searchable
+* [ ] Add processing/complete status if desired
+
+**Goal:** A batch has a complete lifecycle from creation through harvest.
+
+## 14. Build a basic application interface
+
+Do this only after the Python/database functionality above works.
+
+* [ ] Create main facility screen
+* [ ] Create rooms screen
+* [ ] Create room detail screen
+* [ ] Create batches screen
+* [ ] Create batch detail screen
+* [ ] Create strains screen
+* [ ] Create tasks screen
+* [ ] Add forms for creating/editing records
+* [ ] Add buttons/actions for moving batches
+* [ ] Add completion control for tasks
+
+Do **not** worry about making it beautiful yet.
+
+**Goal:** Everything you've already built can now be used without manually running Python functions.
+
+## 15. Testing and cleanup
+
+* [ ] Create realistic fake facility data
+* [ ] Create several rooms
+* [ ] Create several strains
+* [ ] Create several batches
+* [ ] Move batches through multiple rooms
+* [ ] Verify history
+* [ ] Verify plant counts
+* [ ] Test task completion
+* [ ] Test deleting records
+* [ ] Test invalid inputs
+* [ ] Handle database errors without crashing
+* [ ] Remove debugging prints
+* [ ] Clean up file organization
+* [ ] Add comments where useful
+
+## 16. Finish the GitHub project
+
+* [ ] Clean up `schema.sql`
+* [ ] Add optional `seed.sql`
+* [ ] Write README
+* [ ] Explain what the project does
+* [ ] Explain technologies used
+* [ ] Add database setup instructions
+* [ ] Add Python setup instructions
+* [ ] Add screenshots of finished application
+* [ ] Add project features
+* [ ] Add possible future improvements
+* [ ] Make final clean commit
+* [ ] Tag/version MVP if you want
+
+## MVP finish line
+
+Consider version 1 **done** when you can:
+
+* [ ] Start the application
+* [ ] View your facility
+* [ ] Create rooms
+* [ ] Create strains
+* [ ] Create a plant batch
+* [ ] Put the batch into a room
+* [ ] See its strain and plant count
+* [ ] See how many days it has been there
+* [ ] Create tasks
+* [ ] Complete tasks
+* [ ] Move the batch into another room
+* [ ] Retain its previous room history
+* [ ] Move it through Clone → Veg → Flower → Dry
+* [ ] Harvest the batch
+* [ ] View the completed batch afterward
+
+Once all of those work, **stop adding features and call the MVP finished.**
+
+
+
+## 1. Project setup
+
+**Root:**
+
+* `.env`
+* `.gitignore`
+* `schema.sql`
+
+**Package:**
+
+* `src/cult_mgmt/config.py`
+* `src/cult_mgmt/main.py`
+
+---
+
+## 2. PostgreSQL connection
+
+* `src/cult_mgmt/db/connection.py`
+* `src/cult_mgmt/config.py`
+
+---
+
+## 3. Facility functionality
+
+* `src/cult_mgmt/repositories/facility_repository.py`
+* `src/cult_mgmt/main.py`
+
+---
+
+## 4. Room CRUD
+
+* `src/cult_mgmt/repositories/room_repository.py`
+
+---
+
+## 5. Strain CRUD
+
+**Create:**
+
+* `src/cult_mgmt/repositories/strain_repository.py`
+
+---
+
+## 6. Plant batch CRUD
+
+* `src/cult_mgmt/repositories/batch_repository.py`
+* `src/cult_mgmt/services/batch_service.py`
+
+---
+
+## 7. Batch movement
+
+* `src/cult_mgmt/repositories/batch_repository.py`
+* `src/cult_mgmt/services/batch_service.py`
+
+---
+
+## 8. Batch history
+
+* `src/cult_mgmt/repositories/batch_repository.py`
+* `src/cult_mgmt/services/batch_service.py`
+
+---
+
+## 9. Room information
+
+* `src/cult_mgmt/repositories/room_repository.py`
+* `src/cult_mgmt/repositories/batch_repository.py`
+
+---
+
+## 10. Task CRUD
+
+* `src/cult_mgmt/repositories/task_repository.py`
+* `src/cult_mgmt/services/task_service.py`
+
+---
+
+## 11. Cultivation calculations
+
+* `src/cult_mgmt/services/scheduling.py`
+
+---
+
+## 12. Suggested environment
+
+**For now:**
+
+* `src/cult_mgmt/services/scheduling.py`
+
+**Only if it gets too large later:**
+
+* `src/cult_mgmt/services/environment_service.py`
+
+---
+
+## 13. Harvest workflow
+
+* `src/cult_mgmt/repositories/batch_repository.py`
+* `src/cult_mgmt/services/batch_service.py`
+
+---
+
+## 14. Application interface
+
+**Current entry point:**
+
+* `src/cult_mgmt/main.py`
+
+**Later:**
+
+* Add a UI-specific folder only when you actually choose/build the interface.
+
+---
+
+## 15. Testing and cleanup
+
+**Folder:**
+
+* `tests/`
+
+Possible files as needed:
+
+* `tests/test_facility_repository.py`
+* `tests/test_room_repository.py`
+* `tests/test_strain_repository.py`
+* `tests/test_batch_repository.py`
+* `tests/test_batch_service.py`
+* `tests/test_task_repository.py`
+* `tests/test_task_service.py`
+* `tests/test_scheduling.py`
+
+---
+
+## 16. Finish GitHub project
+
+**Root:**
+
+* `README.md`
+* `schema.sql`
+* `seed.sql` *(optional)*
+
+---
+
+## Final structure
+
+```text
+project/
+├── .env
+├── .gitignore
+├── schema.sql
+├── README.md
+├── seed.sql                 # optional
+│
+├── src/
+│   └── cult_mgmt/
+│       ├── __init__.py
+│       ├── config.py
+│       ├── main.py
+│       │
+│       ├── db/
+│       │   ├── __init__.py
+│       │   └── connection.py
+│       │
+│       ├── repositories/
+│       │   ├── __init__.py
+│       │   ├── facility_repository.py
+│       │   ├── room_repository.py
+│       │   ├── strain_repository.py
+│       │   ├── batch_repository.py
+│       │   └── task_repository.py
+│       │
+│       └── services/
+│           ├── __init__.py
+│           ├── batch_service.py
+│           ├── task_service.py
+│           └── scheduling.py
+│
+└── tests/
+    ├── test_facility_repository.py
+    ├── test_room_repository.py
+    ├── test_strain_repository.py
+    ├── test_batch_repository.py
+    ├── test_batch_service.py
+    ├── test_task_repository.py
+    ├── test_task_service.py
+    └── test_scheduling.py
+```
