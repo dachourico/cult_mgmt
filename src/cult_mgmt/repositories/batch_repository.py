@@ -193,7 +193,53 @@ def move_batch(batch_name, new_room):
     conn.commit()
 
 def harvest_batch(batch_name):
+    batch_id = get_batch_id(batch_name)
+    if batch_id is None:
+        return "Batch doesn't exist"
+    current_date = date.today()
     dry_room = get_dry_room()
     if dry_room is None:
         return "No dry room exists."
-    harvest = move_batch(batch_name, dry_room)
+    
+    result = move_batch(batch_name, dry_room)
+    if result:
+        return result
+    
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            UPDATE plant_batches
+            SET harvest_date = %s
+            WHERE id = %s
+            """,
+            (
+                current_date,
+                batch_id
+            )
+        )
+    conn.commit()
+
+def get_day_count(batch_name):
+    current_date = date.today()
+    batch_id = get_batch_id(batch_name)
+    if batch_id is None:
+        return None
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT phase_start_date
+            FROM plant_batches
+            WHERE id = %s
+            """,
+            (
+                batch_id,
+            )
+        )
+        fetch_start_date = cur.fetchone()
+        if fetch_start_date is None:
+            return None
+        start_date = fetch_start_date[0]
+        
+    day_count = (current_date - start_date).days + 1
+    return day_count
+    
