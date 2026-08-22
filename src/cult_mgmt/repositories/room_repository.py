@@ -99,4 +99,38 @@ def delete_rooms(name):
 
     
 
-    
+def get_room_id(room):
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT id
+            FROM rooms
+            WHERE room = %s
+            """,
+            (room,)
+        )
+        fetch_room_id = cur.fetchone()
+        if fetch_room_id is None:
+            return None
+        room_id = fetch_room_id[0]
+
+    return room_id
+
+
+def get_dry_room():
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT name
+            FROM rooms
+            WHERE room_type = 'dry'
+            """
+        )
+
+        fetch_dry_room = cur.fetchone()
+        if fetch_dry_room is None:
+            return None
+        dry_room = fetch_dry_room[0]
+
+    return dry_room
+        

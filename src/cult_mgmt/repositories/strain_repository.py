@@ -70,3 +70,21 @@ def delete_strains(name):
                 )
             )
         conn.commit()
+
+def get_strain_id(strain):
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT id
+            FROM strains
+            WHERE name = %s
+            """,
+            (
+                strain,
+            )
+        )
+        fetch_strain_id = cur.fetchone()
+        strain_id = fetch_strain_id[0]
+    return strain_id
+
+    
