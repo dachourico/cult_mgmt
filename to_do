@@ -68,55 +68,41 @@ Room types:
 
 ## 6. Plant batch CRUD
 
-* [ ] Create a plant batch
-* [ ] Select its strain
-* [ ] Enter plant count
-* [ ] Assign it to a room
-* [ ] Store initialized date
-* [ ] Store phase start date
-* [ ] Give new batches an active status
-* [ ] View all active batches
-* [ ] View one batch
-* [ ] Edit batch name
-* [ ] Edit plant count
-* [ ] Edit strain if necessary
-* [ ] Delete a batch
+* [x] Create a plant batch
+* [x] Select its strain
+* [x] Enter plant count
+* [x] Assign it to a room
+* [x] Store initialized date
+* [x] Store phase start date
+* [x] Give new batches an active status
+* [x] View all active batches
+* [x] View one batch
+* [x] Edit batch name
+* [x] Edit plant count
+* [x] Edit strain if necessary
+* [x] Delete a batch
 
 **Goal:** Batches become the main working object in your application.
 
 ## 7. Batch movement
 
-* [ ] Create a function for moving a batch
-* [ ] Select destination room
-* [ ] Close the batch's current history record
-* [ ] Record move-out date
-* [ ] Create a new batch history record
-* [ ] Record new move-in date
-* [ ] Update `current_room_id`
-* [ ] Update `phase_start_date`
-* [ ] Verify movement history stays accurate
-
-**Goal:** A batch can move from Clone → Veg → Flower → Dry without losing its history.
-
-## 8. Batch history
-
-* [ ] View a batch's complete room history
-* [ ] Show previous rooms
-* [ ] Show move-in dates
-* [ ] Show move-out dates
-* [ ] Calculate days spent in each room
-* [ ] Calculate days spent in current room
+* [x] Create a function for moving a batch
+* [x] Select destination room
+* [x] Record new move-in date
+* [x] Update `current_room_id`
+* [x] Update `phase_start_date`
+* [x] Calculate days spent in current room
 
 **Goal:** You can answer where a batch has been and how long it spent there.
 
 ## 9. Room information
 
-* [ ] Select a room
-* [ ] Display room name
-* [ ] Display room type
-* [ ] Display batches currently in the room
-* [ ] Display strain for each batch
-* [ ] Display plant count for each batch
+* [x] Select a room
+* [x] Display room name
+* [x] Display room type
+* [x] Display batches currently in the room
+* [x] Display strain for each batch
+* [x] Display plant count for each batch
 * [ ] Display total plants in room
 * [ ] Display days each batch has been in the room
 
@@ -124,17 +110,17 @@ Room types:
 
 ## 10. Task CRUD
 
-* [ ] Create task
-* [ ] Assign task to a batch
-* [ ] Associate task with a room
-* [ ] Add due date
-* [ ] View tasks for a batch
-* [ ] View tasks for a room
-* [ ] Edit task
-* [ ] Delete task
-* [ ] Mark task completed
-* [ ] Save completion date
-* [ ] Display incomplete tasks separately from completed tasks
+* [x] Create task
+* [x] Assign task to a batch
+* [x] Associate task with a room
+* [x] Add due date
+* [x] View tasks for a batch
+* [x] View tasks for a room
+* [x] Edit task
+* [x] Delete task
+* [x] Mark task completed
+* [x] Save completion date
+* [x] Display incomplete tasks separately from completed tasks
 
 **Goal:** Rooms and batches have actionable task lists.
 
@@ -147,33 +133,7 @@ Room types:
 * [ ] Display expected next phase
 * [ ] Flag batches that are past their suggested phase duration
 
-**Goal:** The app starts doing useful cultivation logic instead of only CRUD.
 
-## 12. Suggested environment
-
-Keep this simple for the MVP.
-
-* [ ] Decide what environmental recommendations you want
-* [ ] Create basic recommendations by room type
-* [ ] Optionally vary recommendations based on day in phase
-* [ ] Display suggested temperature
-* [ ] Display suggested humidity
-* [ ] Optionally display suggested VPD
-* [ ] Keep these rules in Python rather than making a complicated database system
-
-**Goal:** A room screen can say something like "Flower Day 18 — suggested environment: X."
-
-## 13. Harvest workflow
-
-* [ ] Add ability to harvest a batch
-* [ ] Record harvest date
-* [ ] Change status to harvested
-* [ ] Remove batch from active room
-* [ ] Close final room-history record
-* [ ] Keep harvested batches searchable
-* [ ] Add processing/complete status if desired
-
-**Goal:** A batch has a complete lifecycle from creation through harvest.
 
 ## 14. Build a basic application interface
 

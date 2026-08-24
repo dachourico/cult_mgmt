@@ -140,11 +140,18 @@ def get_room_content(room):
     with conn.cursor() as cur:
         cur.execute(
             """
-            SELECT plant_batches.name, strains.name, plant_batches.plant_count
-            FROM plant_batches
-            JOIN strains
-                ON plant_batches.strain_id = strains.id
-            WHERE plant_batches.current_room_id = %s
+            SELECT
+            r.name AS room_name,
+            r.room_type,
+            pb.name AS batch_name,
+            s.name AS strain_name,
+            pb.plant_count
+            FROM rooms r
+            LEFT JOIN plant_batches pb
+                ON pb.current_room_id = r.id
+            LEFT JOIN strains s
+                ON pb.strain_id = s.id
+            WHERE r.id = %s;
             """,
             (
                 room_id,
@@ -154,6 +161,8 @@ def get_room_content(room):
         room_content = cur.fetchall()
 
     return room_content
+
+
 
 
 
