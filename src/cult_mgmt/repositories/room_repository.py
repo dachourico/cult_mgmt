@@ -2,6 +2,7 @@ from db.connection import get_connection
 from facility_repository import get_facility
 
 
+
 conn = get_connection()
 
 
@@ -133,4 +134,29 @@ def get_dry_room():
         dry_room = fetch_dry_room[0]
 
     return dry_room
-        
+
+def get_room_content(room):
+    room_id = get_room_id(room)
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT plant_batches.name, strains.name, plant_batches.plant_count
+            FROM plant_batches
+            JOIN strains
+                ON plant_batches.strain_id = strains.id
+            WHERE plant_batches.current_room_id = %s
+            """,
+            (
+                room_id,
+            )
+        )
+
+        room_content = cur.fetchall()
+
+    return room_content
+
+
+
+
+    
+    
