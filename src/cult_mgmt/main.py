@@ -32,6 +32,30 @@ def first_use():
     
     conn.commit()
 
+def main_menu():
+
+    main_menu_choice = input(f"""Type the number to navigate\n
+    1. Room stuff\n
+    2. Plant batch stuff\n
+    3. Strain stuff\n
+    4. Task stuff\n
+    5. Exit
+    """)
+
+    if main_menu_choice == "1":
+        room_menu()
+
+def room_menu():
+    pass
+
+def batch_menu():
+    pass
+
+def strain_menu():
+    pass
+
+def task_menu():
+    pass
 
 
 def main():
@@ -39,6 +63,9 @@ def main():
     if facility is None:
         first_use()
     print(f"Welcome back to {home_facility}!")
+    main_menu()
+        
+
     
 
     
