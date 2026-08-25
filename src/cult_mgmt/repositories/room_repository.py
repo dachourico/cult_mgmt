@@ -1,11 +1,7 @@
 from db.connection import get_connection
-from facility_repository import get_facility
-
-
+from repositories.facility_repository import get_facility
 
 conn = get_connection()
-
-
 
 def create_room(room_name, room_type):
     facility = get_facility()
@@ -40,10 +36,7 @@ def view_rooms():
         rooms = cur.fetchall()
 
     return rooms
-
     
-    
-
 def edit_room_name(room, new_name):
     facility = get_facility()
     facility_id = facility[0]
@@ -98,15 +91,13 @@ def delete_rooms(name):
             )
         conn.commit()
 
-    
-
 def get_room_id(room):
     with conn.cursor() as cur:
         cur.execute(
             """
             SELECT id
             FROM rooms
-            WHERE room = %s
+            WHERE name = %s
             """,
             (room,)
         )
@@ -117,6 +108,25 @@ def get_room_id(room):
 
     return room_id
 
+def get_room_name(room_id):
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT name
+            FROM rooms
+            WHERE id = %s
+            """,
+            (
+                room_id,
+            )
+        )
+
+        room = cur.fetchone()
+
+    if room is None:
+        return None
+
+    return room[0]
 
 def get_dry_room():
     with conn.cursor() as cur:

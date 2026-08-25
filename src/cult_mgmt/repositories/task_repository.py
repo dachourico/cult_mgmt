@@ -1,6 +1,6 @@
 from db.connection import get_connection
-from room_repository import get_room_id
-from batch_repository import get_batch_id
+from repositories.room_repository import get_room_id
+from repositories.batch_repository import get_batch_id
 from datetime import date
 
 conn = get_connection()
@@ -110,7 +110,7 @@ def task_completed(room, batch, task):
             WHERE name = %s AND room_id = %s AND batch_id = %s
             """,
             (
-                True,
+                'true',
                 completed_date,
                 task,
                 room_id,

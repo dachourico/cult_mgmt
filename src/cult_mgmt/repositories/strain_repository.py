@@ -1,5 +1,5 @@
 from db.connection import get_connection
-from facility_repository import get_facility
+from repositories.facility_repository import get_facility
 import psycopg
 
 conn = get_connection()
@@ -84,6 +84,8 @@ def get_strain_id(strain):
             )
         )
         fetch_strain_id = cur.fetchone()
+        if fetch_strain_id is None:
+            return None
         strain_id = fetch_strain_id[0]
     return strain_id
 

@@ -1,7 +1,7 @@
-from room_repository import view_rooms, get_room_id, get_dry_room
-from facility_repository import get_facility
+from repositories.room_repository import view_rooms, get_room_id, get_dry_room
+from repositories.facility_repository import get_facility
 from db.connection import get_connection
-from strain_repository import get_strain_id
+from repositories.strain_repository import get_strain_id
 from datetime import date
 
 conn = get_connection()
@@ -242,4 +242,20 @@ def get_day_count(batch_name):
         
     day_count = (current_date - start_date).days + 1
     return day_count
+
+def get_batch_info(batch_name):
+    batch_id = get_batch_id(batch_name)
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT *
+            FROM plant_batches
+            WHERE id = %s
+            """,
+            (
+                batch_id,
+            )
+        )
+        batch_info = cur.fetchone()
+    return batch_info
     
