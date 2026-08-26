@@ -126,12 +126,8 @@ Room types:
 
 ## 11. Cultivation calculations
 
-* [ ] Calculate current day in phase
-* [ ] Compare current day against facility phase duration
-* [ ] Calculate approximate days remaining in current phase
-* [ ] Calculate approximate days until harvest
-* [ ] Display expected next phase
-* [ ] Flag batches that are past their suggested phase duration
+* [x] Calculate current day in phase
+*
 
 
 

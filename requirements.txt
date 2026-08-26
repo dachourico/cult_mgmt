@@ -1,0 +1,3 @@
+psycopg
+python-dotenv
+PySide6==6.11.2

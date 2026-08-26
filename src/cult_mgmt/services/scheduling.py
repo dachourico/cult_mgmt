@@ -11,6 +11,7 @@ def task_scheduling(batch):
     clone_days = facility_info[2]
     veg_days = facility_info[3]
     flower_days = facility_info[4]
+    room = batch_info[4]
 
 
     transplant = initialized_date + timedelta(days=clone_days)

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Cultivation Management Suite
+Comment=Track rooms, batches, strains, and cultivation tasks
+Exec=/home/alex/cult_mgmt/.venv/bin/python /home/alex/cult_mgmt/run_gui.py
+Icon=/home/alex/cult_mgmt/assets/cultivate.svg
+Terminal=false
+Categories=Office;Utility;
+StartupNotify=true
+Path=/home/alex/cult_mgmt
